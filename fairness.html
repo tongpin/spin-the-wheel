@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Spin the Wheel Guarantees True Randomness and Fair Spins</title>
+  <meta name="description" content="See how Spin the Wheel uses cryptographic randomness, transparent weighted probability, timestamps, and audit signals to keep every spin fair.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="author" content="Duc Nguyen">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#091126">
+  <link rel="canonical" href="https://spin.alsatian.co/fairness.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <meta property="og:locale:alternate" content="ko_KR">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How Spin the Wheel Guarantees True Randomness and Fair Spins">
+  <meta property="og:description" content="Crypto-random winner selection, independent spins, weighted probability transparency, and audit-friendly result tracking.">
+  <meta property="og:image" content="https://spin.alsatian.co/og-image.png">
+  <meta property="og:image:secure_url" content="https://spin.alsatian.co/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Spin the Wheel branded social preview image.">
+  <meta property="og:url" content="https://spin.alsatian.co/fairness.html">
+  <meta property="og:site_name" content="Spin the Wheel">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Spin the Wheel Guarantees True Randomness and Fair Spins">
+  <meta name="twitter:description" content="Learn how Spin the Wheel uses secure random selection and transparent probability rules.">
+  <meta name="twitter:image" content="https://spin.alsatian.co/og-image.png">
+  <meta name="twitter:image:alt" content="Spin the Wheel branded social preview image.">
+  <link rel="alternate" hreflang="en" href="https://spin.alsatian.co/fairness.html">
+  <link rel="alternate" hreflang="vi" href="https://spin.alsatian.co/fairness.html?lang=vi">
+  <link rel="alternate" hreflang="es" href="https://spin.alsatian.co/fairness.html?lang=es">
+  <link rel="alternate" hreflang="pt" href="https://spin.alsatian.co/fairness.html?lang=pt">
+  <link rel="alternate" hreflang="fr" href="https://spin.alsatian.co/fairness.html?lang=fr">
+  <link rel="alternate" hreflang="de" href="https://spin.alsatian.co/fairness.html?lang=de">
+  <link rel="alternate" hreflang="ja" href="https://spin.alsatian.co/fairness.html?lang=ja">
+  <link rel="alternate" hreflang="ko" href="https://spin.alsatian.co/fairness.html?lang=ko">
+  <link rel="alternate" hreflang="zh" href="https://spin.alsatian.co/fairness.html?lang=zh">
+  <link rel="alternate" hreflang="id" href="https://spin.alsatian.co/fairness.html?lang=id">
+  <link rel="alternate" hreflang="x-default" href="https://spin.alsatian.co/fairness.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://spin.alsatian.co/fairness.html#article",
+        "headline": "How Spin the Wheel Guarantees True Randomness and Fair Spins",
+        "description": "Understand how Spin the Wheel uses cryptographic randomness, transparent weighted probability, and audit-friendly tracking.",
+        "mainEntityOfPage": "https://spin.alsatian.co/fairness.html",
+        "author": {
+          "@type": "Person",
+          "name": "Duc Nguyen"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Spin the Wheel",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://spin.alsatian.co/icon-512.png"
+          }
+        },
+        "image": "https://spin.alsatian.co/og-image.png",
+        "about": {
+          "@id": "https://spin.alsatian.co/#webapp"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://spin.alsatian.co/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Fairness",
+            "item": "https://spin.alsatian.co/fairness.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/support.css">
+</head>
+<body>
+  <div class="support-shell">
+    <header class="support-header" data-support-header></header>
+    <main class="support-main" data-support-main="fairness">
+      <h1>How randomness works</h1>
+      <p>
+        Spin the Wheel uses <code>crypto.getRandomValues()</code>, which is cryptographically secure browser randomness.
+        We never use <code>Math.random()</code> for winner selection.
+      </p>
+
+      <h2>What happens on each spin</h2>
+      <div class="diagram" aria-label="Randomness flow diagram">
+        <div class="diagram-step">1. Active entries are collected (disabled/eliminated entries are excluded).</div>
+        <div class="diagram-step">2. A winner is selected immediately with crypto-random values.</div>
+        <div class="diagram-step">3. The wheel animation is calculated to land on that selected winner.</div>
+        <div class="diagram-step">4. The result popup and history log show the winner.</div>
+      </div>
+
+      <h2>Independent spins</h2>
+      <p>
+        Every spin is independent. Previous winners do not influence future outcomes unless you explicitly use elimination mode,
+        where winners are removed from the next draw by design.
+      </p>
+
+      <h2>Weighted mode transparency</h2>
+      <p>
+        When weighted mode is active, each entry’s chance is proportional to its weight using:
+        <code>P(entry) = weight / totalWeight</code>.
+      </p>
+      <p>
+        The app always displays a visible weighted badge and a probability inspector so viewers can verify the current rules.
+      </p>
+
+      <h2>Auditability</h2>
+      <ul>
+        <li>Each result includes a timestamp.</li>
+        <li>Win counts are tracked per entry.</li>
+        <li>Share URLs include schema version and checksum validation to detect corruption.</li>
+      </ul>
+
+      <p><a href="/">Back to Spin the Wheel</a></p>
+    </main>
+    <footer class="support-footer" data-support-footer></footer>
+  </div>
+  <script src="/support.js"></script>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cca400a30825469dbb3c039b7d04517d"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

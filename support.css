@@ -1,0 +1,351 @@
+:root {
+  --bg: #0b1428;
+  --surface: #152447;
+  --text: #f5f8ff;
+  --muted: #afc0e3;
+  --accent: #4ae4ff;
+  --border: rgb(255 255 255 / 0.14);
+  --radius: 1rem;
+  --shadow: 0 18px 46px rgb(0 0 0 / 0.3);
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 8%, rgb(74 228 255 / 0.14), transparent 36%),
+    radial-gradient(circle at 85% 15%, rgb(255 216 107 / 0.12), transparent 30%),
+    linear-gradient(160deg, #050915, var(--bg) 52%, #102238);
+  color: var(--text);
+}
+
+.support-shell {
+  width: min(92vw, 62rem);
+  margin: 0 auto;
+  padding: 1rem 0 2rem;
+}
+
+.support-header {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, #0f1a35, #1d2e56);
+  box-shadow: var(--shadow);
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.support-header a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.support-header nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.support-header nav a {
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.support-main {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(150deg, #101b38, #1a2a4c);
+  padding: clamp(1rem, 3vw, 2rem);
+  box-shadow: var(--shadow);
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Outfit", "Avenir Next", sans-serif;
+  margin-top: 0;
+}
+
+p,
+li {
+  color: var(--muted);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.8rem 0 1rem;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.65rem;
+  text-align: left;
+  color: var(--muted);
+}
+
+th {
+  color: var(--text);
+  background: rgb(255 255 255 / 0.06);
+}
+
+a {
+  color: var(--accent);
+}
+
+.diagram {
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: grid;
+  gap: 0.6rem;
+  background: rgb(0 0 0 / 0.18);
+}
+
+.diagram-step {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  width: fit-content;
+  background: rgb(255 255 255 / 0.05);
+}
+
+.fairness-audit {
+  margin-top: 1.35rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+.fairness-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem;
+  align-items: end;
+  margin: 0.8rem 0;
+}
+
+.fairness-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.fairness-field span {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.fairness-field input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.7rem;
+  background: rgb(4 10 22 / 0.6);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.fairness-field input:focus-visible,
+.support-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.support-button {
+  appearance: none;
+  border: 1px solid rgb(74 228 255 / 0.65);
+  border-radius: 0.6rem;
+  padding: 0.62rem 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(135deg, #163a60, #21528b);
+  color: #f5fbff;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.support-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.support-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.fairness-note,
+.fairness-status,
+.fairness-summary {
+  color: var(--muted);
+  margin: 0.6rem 0 0.7rem;
+}
+
+.fairness-results {
+  margin-top: 0.9rem;
+}
+
+.fairness-results-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.4vw, 1.5rem);
+}
+
+.fairness-table-wrap {
+  overflow-x: auto;
+}
+
+.fairness-chart-wrap {
+  order: 1;
+}
+
+.fairness-table-wrap {
+  order: 2;
+}
+
+.fairness-table tfoot td {
+  font-weight: 700;
+  color: var(--text);
+  background: rgb(255 255 255 / 0.06);
+}
+
+.fairness-table tbody td:first-child,
+.fairness-table tfoot td:first-child {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.fairness-chart-wrap {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  background: rgb(0 0 0 / 0.14);
+}
+
+.fairness-chart-legend {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.65rem;
+}
+
+.fairness-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.fairness-legend-swatch {
+  width: 0.78rem;
+  height: 0.78rem;
+  border-radius: 0.22rem;
+  background: var(--fairness-run-color, #4f84ff);
+}
+
+.fairness-chart-viewport {
+  overflow-x: auto;
+}
+
+.fairness-chart {
+  min-width: 34rem;
+}
+
+.fairness-grouped-chart {
+  display: grid;
+  grid-template-columns: repeat(var(--fairness-chart-columns, 20), minmax(1.25rem, 1fr));
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 14rem;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 0.65rem;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0.01));
+}
+
+.fairness-group {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 0.34rem;
+  min-height: 12.4rem;
+}
+
+.fairness-group-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--fairness-bar-gap, 0.2rem);
+  min-height: 11.4rem;
+}
+
+.fairness-grouped-bar {
+  width: var(--fairness-bar-width, 0.34rem);
+  min-height: 2px;
+  border-radius: 0.24rem 0.24rem 0 0;
+  background: var(--fairness-run-color, #4f84ff);
+}
+
+.fairness-group-label {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.support-footer {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.1rem;
+  background: linear-gradient(145deg, #0f1a35, #1d2e56);
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.support-footer a {
+  color: var(--accent);
+}
+
+@media (max-width: 767px) {
+  .support-header,
+  .support-footer {
+    border-radius: 0;
+  }
+
+  .support-shell {
+    width: 100%;
+    padding: 0;
+  }
+
+  .support-main {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .fairness-chart {
+    min-width: 28rem;
+  }
+}

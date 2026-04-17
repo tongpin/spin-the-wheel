@@ -1,0 +1,66 @@
+{
+  "name": "Spin the Wheel",
+  "short_name": "Spin the Wheel",
+  "description": "Free online random picker wheel for classrooms, raffles, giveaways, teams, and quick decisions.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "browser"
+  ],
+  "orientation": "any",
+  "background_color": "#091126",
+  "theme_color": "#091126",
+  "categories": [
+    "utilities",
+    "productivity",
+    "education",
+    "entertainment"
+  ],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "Spin the Wheel app with a customizable decision wheel"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "About",
+      "short_name": "About",
+      "description": "Learn about Spin the Wheel and how it works",
+      "url": "/about.html"
+    },
+    {
+      "name": "Fairness",
+      "short_name": "Fairness",
+      "description": "Read how cryptographic randomness is used",
+      "url": "/fairness.html"
+    },
+    {
+      "name": "Help",
+      "short_name": "Help",
+      "description": "Open the guide, shortcuts, and FAQ page",
+      "url": "/help.html"
+    }
+  ]
+}
