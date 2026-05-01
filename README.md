@@ -33,7 +33,7 @@ Because the app uses ES modules, root-relative asset paths, and a service worker
 ### Option 1: Python
 
 ```bash
-cd /home/duc/git/spin-the-wheel
+cd /path/to/spin-the-wheel
 python3 -m http.server 8080
 ```
 
@@ -42,7 +42,7 @@ Open http://localhost:8080.
 ### Option 2: Node
 
 ```bash
-cd /home/duc/git/spin-the-wheel
+cd /path/to/spin-the-wheel
 npx serve .
 ```
 
