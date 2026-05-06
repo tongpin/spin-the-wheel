@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spin the Wheel: Free Random Picker, Wheel Spinner &amp; Decision Maker</title>
+  <title data-i18n="app_title">Spin the Wheel: Free Random Picker, Wheel Spinner &amp; Decision Maker</title>
   <meta name="description" content="Spin the Wheel is a free online random picker and wheel spinner for classrooms, raffles, giveaways, teams, and daily decisions. Private, fast, shareable, and works offline.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="author" content="Duc Nguyen">
@@ -152,8 +152,8 @@
           <span id="languageCode">EN</span>
           <span class="caret" aria-hidden="true">▾</span>
         </button>
-        <div id="languageMenu" class="lang-menu hidden" role="listbox" aria-label="Languages"></div>
-        <a href="/" class="brand-link" aria-label="Spin the Wheel home">
+        <div id="languageMenu" class="lang-menu hidden" role="listbox" data-i18n-aria-label="language_menu_aria"></div>
+        <a href="/" class="brand-link" data-i18n-aria-label="brand_home_aria">
           <strong>Spin the Wheel</strong>
         </a>
       </div>
@@ -179,15 +179,15 @@
     </header>
 
     <main class="main-layout" role="main">
-      <section class="wheel-section" aria-label="Wheel section">
-        <h1 class="sr-only">Spin the Wheel — Spin to Decide</h1>
+      <section class="wheel-section" data-i18n-aria-label="wheel_section_aria">
+        <h1 class="sr-only" data-i18n="app_heading">Spin the Wheel — Spin to Decide</h1>
         <div class="wheel-wrap">
           <div class="wheel-badges">
-            <span id="weightedBadge" class="mode-badge hidden">⚖ Weighted</span>
+            <span id="weightedBadge" class="mode-badge hidden" data-i18n="weighted_badge">⚖ Weighted</span>
             <span id="seedBadge" class="mode-badge hidden" data-i18n="seed_badge">🔁 Seeded</span>
           </div>
           <div id="wheelContainer" class="wheel-container">
-            <canvas id="wheelCanvas" aria-label="Spin the Wheel canvas"></canvas>
+            <canvas id="wheelCanvas" data-i18n-aria-label="wheel_canvas_aria"></canvas>
             <div class="wheel-glow" aria-hidden="true"></div>
             <div class="wheel-pointer" aria-hidden="true"></div>
             <button id="centerSpinButton" class="center-spin-btn" type="button" data-i18n="spin_button" data-i18n-aria-label="spin_button"></button>
@@ -196,14 +196,14 @@
         </div>
       </section>
 
-      <aside class="side-panel" aria-label="Controls panel">
-        <nav class="panel-tabs" aria-label="Panel tabs">
+      <aside class="side-panel" data-i18n-aria-label="controls_panel_aria">
+        <nav class="panel-tabs" data-i18n-aria-label="panel_tabs_aria">
           <button class="tab-btn active" type="button" data-tab="entries" data-i18n="entries_tab"></button>
           <button class="tab-btn" type="button" data-tab="results" data-i18n="results_tab"></button>
           <button id="factoryResetButton" class="tab-btn tab-reset-btn" type="button" data-i18n="reset_app" data-i18n-title="reset_app_tooltip" data-i18n-aria-label="reset_app_tooltip"></button>
         </nav>
 
-        <section id="entriesTab" class="panel-tab active" role="region" aria-label="Entries">
+        <section id="entriesTab" class="panel-tab active" role="region" data-i18n-aria-label="entries_tab">
           <div class="panel-inline-row hidden" aria-hidden="true">
             <button id="undoButton" class="ghost-btn" type="button" data-i18n="undo" tabindex="-1"></button>
             <button id="redoButton" class="ghost-btn" type="button" data-i18n="redo" tabindex="-1"></button>
@@ -233,7 +233,7 @@
           </p>
         </section>
 
-        <section id="resultsTab" class="panel-tab" role="region" aria-label="Results">
+        <section id="resultsTab" class="panel-tab" role="region" data-i18n-aria-label="results_tab">
           <div class="panel-topline">
             <button id="historyButton" class="accent-btn" type="button" data-i18n="view_history"></button>
           </div>
@@ -245,31 +245,31 @@
 
     <section class="seo-strip" aria-labelledby="seoStripTitle">
       <div class="seo-strip-copy">
-        <p class="seo-strip-eyebrow">Free random picker</p>
-        <h2 id="seoStripTitle">Spin a fair decision wheel for classrooms, raffles, giveaways, teams, and quick picks</h2>
-        <p>Spin the Wheel combines cryptographic randomness, local-first privacy, weighted entries, shareable links, and offline support in one fast browser app.</p>
+        <p class="seo-strip-eyebrow" data-i18n="seo_strip_eyebrow">Free random picker</p>
+        <h2 id="seoStripTitle" data-i18n="seo_strip_title">Spin a fair decision wheel for classrooms, raffles, giveaways, teams, and quick picks</h2>
+        <p data-i18n="seo_strip_body">Spin the Wheel combines cryptographic randomness, local-first privacy, weighted entries, shareable links, and offline support in one fast browser app.</p>
         <div class="seo-strip-links">
-          <a href="/fairness.html">How fairness works</a>
-          <a href="/help.html">Usage guide and FAQ</a>
-          <a href="/privacy.html">Privacy-first by default</a>
+          <a href="/fairness.html" data-i18n="seo_link_fairness">How fairness works</a>
+          <a href="/help.html" data-i18n="seo_link_help">Usage guide and FAQ</a>
+          <a href="/privacy.html" data-i18n="seo_link_privacy">Privacy-first by default</a>
         </div>
       </div>
       <ul class="seo-strip-list">
-        <li>Random name picker for teachers and classrooms</li>
-        <li>Raffle wheel for events, giveaways, and live streams</li>
-        <li>Decision maker for teams, chores, lunches, and daily choices</li>
+        <li data-i18n="seo_feature_teachers">Random name picker for teachers and classrooms</li>
+        <li data-i18n="seo_feature_raffle">Raffle wheel for events, giveaways, and live streams</li>
+        <li data-i18n="seo_feature_decisions">Decision maker for teams, chores, lunches, and daily choices</li>
       </ul>
     </section>
 
     <button id="floatingSpinButton" class="floating-spin hidden" type="button" data-i18n="spin_button"></button>
-    <div id="fullscreenToolbar" class="fullscreen-toolbar" aria-label="Fullscreen controls">
+    <div id="fullscreenToolbar" class="fullscreen-toolbar" data-i18n-aria-label="fullscreen_controls_aria">
       <button id="fullscreenExitButton" class="ghost-btn" type="button" data-i18n="exit_fullscreen"></button>
       <button id="fullscreenSettingsButton" class="ghost-btn" type="button" data-i18n="settings"></button>
     </div>
 
     <footer class="app-footer">
       <p>🔒 <span data-i18n="privacy_short"></span></p>
-      <nav aria-label="Footer links">
+      <nav data-i18n-aria-label="footer_links_aria">
         <a href="/about.html" data-i18n="about"></a>
         <a href="/fairness.html" data-i18n="fairness"></a>
         <a href="/privacy.html" data-i18n="privacy"></a>
@@ -287,8 +287,8 @@
           <button id="closeSettingsButton" class="ghost-btn" type="button" data-i18n="close"></button>
         </div>
         <div class="settings-modal-shell">
-          <nav class="settings-modal-tabs" aria-label="Settings tabs">
-            <button class="settings-modal-tab active" type="button" data-settings-tab="general">General</button>
+          <nav class="settings-modal-tabs" data-i18n-aria-label="settings_tabs_aria">
+            <button class="settings-modal-tab active" type="button" data-settings-tab="general" data-i18n="general"></button>
             <button class="settings-modal-tab" type="button" data-settings-tab="spin" data-i18n="spin_section"></button>
             <button class="settings-modal-tab" type="button" data-settings-tab="theme" data-i18n="theme_section"></button>
             <button class="settings-modal-tab" type="button" data-settings-tab="sound" data-i18n="sound_section"></button>
@@ -297,7 +297,7 @@
           </nav>
 
           <div class="settings-modal-panels">
-            <section class="settings-modal-panel active" data-settings-panel="general" role="region" aria-label="General settings">
+            <section class="settings-modal-panel active" data-settings-panel="general" role="region" data-i18n-aria-label="general">
               <div class="settings-grid">
                 <label class="checkbox-line">
                   <input id="weightsToggle" type="checkbox">
@@ -314,7 +314,7 @@
               </div>
             </section>
 
-            <section class="settings-modal-panel" data-settings-panel="spin" role="region" aria-label="Spin settings">
+            <section class="settings-modal-panel" data-settings-panel="spin" role="region" data-i18n-aria-label="spin_section">
               <div class="settings-grid">
                 <label for="durationSlider"><span data-i18n="spin_duration"></span>: <output id="durationOutput">5s</output></label>
                 <input id="durationSlider" type="range" min="1" max="30" step="1" value="5">
@@ -329,20 +329,20 @@
               </div>
             </section>
 
-            <section class="settings-modal-panel" data-settings-panel="theme" role="region" aria-label="Theme settings">
+            <section class="settings-modal-panel" data-settings-panel="theme" role="region" data-i18n-aria-label="theme_section">
               <div class="settings-grid">
                 <label for="themeSelect" data-i18n="theme"></label>
-                <select id="themeSelect" aria-label="Theme"></select>
+                <select id="themeSelect" data-i18n-aria-label="theme"></select>
                 <div id="themeSwatches" class="theme-swatch-grid" role="list"></div>
                 <label for="pointerStyleSelect" data-i18n="pointer_style"></label>
-                <select id="pointerStyleSelect" aria-label="Pointer style">
+                <select id="pointerStyleSelect" data-i18n-aria-label="pointer_style">
                   <option value="classic" data-i18n="pointer_classic"></option>
                   <option value="pin" data-i18n="pointer_pin"></option>
                   <option value="diamond" data-i18n="pointer_diamond"></option>
                   <option value="flag" data-i18n="pointer_flag"></option>
                 </select>
                 <label for="centerTextInput" data-i18n="spin_button_text"></label>
-                <input id="centerTextInput" type="text" maxlength="20" placeholder="SPIN">
+                <input id="centerTextInput" type="text" maxlength="20" data-i18n-placeholder="spin_button">
                 <label for="centerColorInput" data-i18n="spin_button_color"></label>
                 <input id="centerColorInput" type="color" value="#14325f">
                 <div class="panel-inline-row">
@@ -350,7 +350,7 @@
                   <button id="removeCenterImageButton" class="ghost-btn" type="button" data-i18n="remove_center_image"></button>
                 </div>
                 <label for="backgroundTypeSelect" data-i18n="background_type"></label>
-                <select id="backgroundTypeSelect" aria-label="Background type">
+                <select id="backgroundTypeSelect" data-i18n-aria-label="background_type">
                   <option value="default" data-i18n="background_default"></option>
                   <option value="solid" data-i18n="background_solid"></option>
                   <option value="gradient" data-i18n="background_gradient"></option>
@@ -371,7 +371,7 @@
               </div>
             </section>
 
-            <section class="settings-modal-panel" data-settings-panel="sound" role="region" aria-label="Sound settings">
+            <section class="settings-modal-panel" data-settings-panel="sound" role="region" data-i18n-aria-label="sound_section">
               <div class="settings-grid">
                 <label for="volumeSlider"><span data-i18n="volume"></span>: <output id="volumeOutput">70%</output></label>
                 <input id="volumeSlider" type="range" min="0" max="100" step="1" value="70">
@@ -380,7 +380,7 @@
                   <span data-i18n="tick_sound"></span>
                 </label>
                 <label for="tickSoundSelect" data-i18n="tick_sound_variant"></label>
-                <select id="tickSoundSelect" aria-label="Tick sound variant">
+                <select id="tickSoundSelect" data-i18n-aria-label="tick_sound_variant">
                   <option value="click" data-i18n="tick_click"></option>
                   <option value="pop" data-i18n="tick_pop"></option>
                   <option value="wooden" data-i18n="tick_wooden"></option>
@@ -392,7 +392,7 @@
                   <span data-i18n="win_sound"></span>
                 </label>
                 <label for="winSoundSelect" data-i18n="win_sound_variant"></label>
-                <select id="winSoundSelect" aria-label="Win sound variant">
+                <select id="winSoundSelect" data-i18n-aria-label="win_sound_variant">
                   <option value="fanfare" data-i18n="win_fanfare"></option>
                   <option value="applause" data-i18n="win_applause"></option>
                   <option value="chime" data-i18n="win_chime"></option>
@@ -403,7 +403,7 @@
                   <span data-i18n="spin_ambient"></span>
                 </label>
                 <label for="spinSoundSelect" data-i18n="spin_sound_variant"></label>
-                <select id="spinSoundSelect" aria-label="Spin sound variant">
+                <select id="spinSoundSelect" data-i18n-aria-label="spin_sound_variant">
                   <option value="whoosh" data-i18n="spin_whoosh"></option>
                   <option value="wind" data-i18n="spin_wind"></option>
                   <option value="hum" data-i18n="spin_hum"></option>
@@ -411,10 +411,10 @@
               </div>
             </section>
 
-            <section class="settings-modal-panel" data-settings-panel="effects" role="region" aria-label="Effects settings">
+            <section class="settings-modal-panel" data-settings-panel="effects" role="region" data-i18n-aria-label="effects_section">
               <div class="settings-grid">
                 <label for="celebrationSelect" data-i18n="celebration_effect"></label>
-                <select id="celebrationSelect" aria-label="Celebration effect">
+                <select id="celebrationSelect" data-i18n-aria-label="celebration_effect">
                   <option value="confetti" data-i18n="celebration_confetti"></option>
                   <option value="fireworks" data-i18n="celebration_fireworks"></option>
                   <option value="none" data-i18n="celebration_none"></option>
@@ -446,7 +446,7 @@
               </div>
             </section>
 
-            <section class="settings-modal-panel" data-settings-panel="probability" role="region" aria-label="Probability settings">
+            <section class="settings-modal-panel" data-settings-panel="probability" role="region" data-i18n-aria-label="probability_inspector">
               <div class="probability-panel settings-modal-probability">
                 <div id="probabilityEqualBadge" class="prob-equal-badge hidden" data-i18n="equal_probability"></div>
                 <div id="probabilityList" class="probability-list"></div>
@@ -462,8 +462,8 @@
         <h2 id="pasteModalTitle" data-i18n="paste_list"></h2>
         <textarea id="pasteTextarea" rows="10" data-i18n-placeholder="paste_placeholder"></textarea>
         <div class="modal-actions">
-          <button id="importDataButton" class="ghost-btn" type="button">Import CSV/JSON</button>
-          <button id="exportDataButton" class="ghost-btn" type="button">Export CSV/JSON</button>
+          <button id="importDataButton" class="ghost-btn" type="button" data-i18n="import_csv_json"></button>
+          <button id="exportDataButton" class="ghost-btn" type="button" data-i18n="export_csv_json"></button>
         </div>
         <div class="modal-actions">
           <button id="pasteCancelButton" class="ghost-btn" type="button" data-i18n="cancel"></button>
@@ -520,7 +520,7 @@
         </fieldset>
         <fieldset class="radio-group">
           <legend data-i18n="qr_code"></legend>
-          <canvas id="qrCanvas" width="220" height="220" aria-label="QR code"></canvas>
+          <canvas id="qrCanvas" width="220" height="220" data-i18n-aria-label="qr_code"></canvas>
           <button id="downloadQrButton" class="ghost-btn" type="button" data-i18n="download_qr"></button>
         </fieldset>
         <div class="modal-actions">
@@ -560,15 +560,15 @@
 
     <section id="exportModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle">
       <div class="modal-card">
-        <h2 id="exportModalTitle">Export</h2>
+        <h2 id="exportModalTitle" data-i18n="export_title"></h2>
         <fieldset class="radio-group">
-          <legend>Format</legend>
+          <legend data-i18n="export_format"></legend>
           <label><input type="radio" name="exportFormat" value="csv" checked> <span data-i18n="export_csv"></span></label>
           <label><input type="radio" name="exportFormat" value="json"> <span data-i18n="export_json"></span></label>
         </fieldset>
         <div class="modal-actions">
           <button id="exportCancelButton" class="ghost-btn" type="button" data-i18n="cancel"></button>
-          <button id="exportApplyButton" class="accent-btn" type="button">Export</button>
+          <button id="exportApplyButton" class="accent-btn" type="button" data-i18n="export_action"></button>
         </div>
       </div>
     </section>

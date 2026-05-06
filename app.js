@@ -203,6 +203,22 @@ let confirmClosingByChoice = false;
 let floatingSpinObserver = null;
 let spinOnlyControlElements = null;
 const EVENT_PRESET_KEYS = new Set(["default", "classroom", "raffle", "streamer", "party", "minimal", "dark-luxury"]);
+const AUTO_CENTER_TEXT_PREFIX = "__auto__:";
+const AUTO_CENTER_TEXT_KEY_BY_PRESET = {
+  default: "spin_button",
+  classroom: "center_text_go",
+  raffle: "center_text_draw",
+  streamer: "spin_button",
+  party: "center_text_party",
+  minimal: "spin_button",
+  "dark-luxury": "spin_button"
+};
+const LEGACY_AUTO_CENTER_TEXT_KEY_BY_VALUE = {
+  SPIN: "spin_button",
+  GO: "center_text_go",
+  DRAW: "center_text_draw",
+  PARTY: "center_text_party"
+};
 
 function getState() {
   return stateManager.getState();
@@ -463,6 +479,34 @@ function normalizeEventPresetKey(presetKey) {
   return EVENT_PRESET_KEYS.has(presetKey) ? presetKey : "default";
 }
 
+function getAutoCenterTextKeyForPreset(presetKey) {
+  const normalizedPresetKey = normalizeEventPresetKey(presetKey);
+  return AUTO_CENTER_TEXT_KEY_BY_PRESET[normalizedPresetKey] || "spin_button";
+}
+
+function getAutoCenterTextValueForPreset(presetKey) {
+  const autoKey = getAutoCenterTextKeyForPreset(presetKey);
+  return autoKey === "spin_button" ? "" : `${AUTO_CENTER_TEXT_PREFIX}${autoKey}`;
+}
+
+function getLegacyAutoCenterTextKey(value) {
+  return LEGACY_AUTO_CENTER_TEXT_KEY_BY_VALUE[String(value || "")] || null;
+}
+
+function resolveCenterText(themeState = {}) {
+  const normalizedPresetKey = normalizeEventPresetKey(themeState.eventPreset);
+  const autoKey = getAutoCenterTextKeyForPreset(normalizedPresetKey);
+  const value = String(themeState.centerText || "");
+  if (!value) {
+    return t(autoKey);
+  }
+  if (value.startsWith(AUTO_CENTER_TEXT_PREFIX)) {
+    return t(value.slice(AUTO_CENTER_TEXT_PREFIX.length));
+  }
+  const legacyAutoKey = getLegacyAutoCenterTextKey(value);
+  return legacyAutoKey ? t(legacyAutoKey) : value;
+}
+
 function applyEventPreset(presetKey) {
   const normalizedPresetKey = normalizeEventPresetKey(presetKey);
   const defaultPageTheme = DEFAULT_STATE.theme.pageTheme === "light" ? "light" : "dark";
@@ -486,42 +530,36 @@ function applyEventPreset(presetKey) {
       theme: "pastel",
       pageTheme: "light",
       pointerStyle: "classic",
-      centerText: "GO",
       confettiEnabled: false
     },
     raffle: {
       theme: "casino",
       pageTheme: "dark",
       pointerStyle: "diamond",
-      centerText: "DRAW",
       confettiEnabled: true
     },
     streamer: {
       theme: "cyberpunk",
       pageTheme: "dark",
       pointerStyle: "flag",
-      centerText: "SPIN",
       confettiEnabled: false
     },
     party: {
       theme: "candy",
       pageTheme: "dark",
       pointerStyle: "pin",
-      centerText: "PARTY",
       confettiEnabled: true
     },
     minimal: {
       theme: "monochrome",
       pageTheme: "light",
       pointerStyle: "classic",
-      centerText: "SPIN",
       confettiEnabled: false
     },
     "dark-luxury": {
       theme: "elegant",
       pageTheme: "dark",
       pointerStyle: "diamond",
-      centerText: "SPIN",
       confettiEnabled: true
     }
   }[normalizedPresetKey];
@@ -531,7 +569,7 @@ function applyEventPreset(presetKey) {
     draft.theme.preset = patch.theme;
     draft.theme.pageTheme = patch.pageTheme;
     draft.theme.pointerStyle = patch.pointerStyle;
-    draft.theme.centerText = patch.centerText;
+    draft.theme.centerText = getAutoCenterTextValueForPreset(normalizedPresetKey);
     draft.settings.confettiEnabled = patch.confettiEnabled;
     draft.settings.celebrationMode = patch.confettiEnabled ? "confetti" : "none";
     draft.theme.eventPreset = normalizedPresetKey;
@@ -1225,7 +1263,7 @@ function renderSettings(state) {
   dom.performanceOverviewToggle.checked = Boolean(state.settings.performanceOverview);
   dom.eventPresetSelect.value = normalizeEventPresetKey(state.theme.eventPreset);
   dom.pointerStyleSelect.value = state.theme.pointerStyle || "classic";
-  dom.centerTextInput.value = state.theme.centerText || t("spin_button");
+  dom.centerTextInput.value = resolveCenterText(state.theme);
   dom.centerColorInput.value = normalizeColor(state.theme.centerColor) || "#14325f";
   dom.backgroundTypeSelect.value = state.theme.backgroundType || "default";
   dom.backgroundSolidInput.value = normalizeColor(state.theme.backgroundSolid) || "#091126";
@@ -1618,7 +1656,7 @@ function renderAll(state) {
   wheelEngine.setWheelState({ entries: state.entries, settings: state.settings, theme: state.theme });
   const spinLabel = state.settings.manualStop && manualSpinPending && wheelEngine.isSpinning()
     ? t("stop_button")
-    : (state.theme.centerText || t("spin_button"));
+    : resolveCenterText(state.theme);
   dom.centerSpinButton.textContent = spinLabel;
   dom.floatingSpinButton.textContent = spinLabel;
   dom.firstRunHint.classList.toggle("hidden", state.ui.firstRunHintDismissed || !!safeLocalStorageGet(STORAGE_KEYS.firstRunHintDismissed));
@@ -2751,7 +2789,7 @@ function bindEvents() {
   dom.centerTextInput.addEventListener("change", () => {
     if (getState().settings.spinOnly) return;
     stateManager.update((draft) => {
-      draft.theme.centerText = dom.centerTextInput.value.trim() || t("spin_button");
+      draft.theme.centerText = dom.centerTextInput.value.trim() || getAutoCenterTextValueForPreset(draft.theme.eventPreset);
     }, { reason: "center-text" });
   });
 
@@ -3180,6 +3218,11 @@ async function bootstrap() {
 
   const hasStoredState = Boolean(safeLocalStorageGet(STORAGE_KEYS.state));
   const initialState = stateManager.initialize(decodedState);
+  const initialPresetKey = normalizeEventPresetKey(initialState.theme?.eventPreset);
+  if (getLegacyAutoCenterTextKey(initialState.theme?.centerText)) {
+    initialState.theme.centerText = getAutoCenterTextValueForPreset(initialPresetKey);
+    stateManager.setState(initialState, { reason: "center-text-migration", skipHistory: true });
+  }
   if (!hasStoredState && !sharePayload) {
     initialState.ui.firstRunHintDismissed = Boolean(safeLocalStorageGet(STORAGE_KEYS.firstRunHintDismissed));
     if (!safeLocalStorageGet(STORAGE_KEYS.themeMode)) {
@@ -3204,6 +3247,14 @@ async function bootstrap() {
     stateManager.update((draft) => {
       draft.settings.spinOnly = true;
     }, { skipSave: true, skipHistory: true, reason: "embed-mode" });
+  }
+
+  const stateBeforeFirstRender = getState();
+  const presetKeyBeforeFirstRender = normalizeEventPresetKey(stateBeforeFirstRender.theme?.eventPreset);
+  if (getLegacyAutoCenterTextKey(stateBeforeFirstRender.theme?.centerText)) {
+    stateManager.update((draft) => {
+      draft.theme.centerText = getAutoCenterTextValueForPreset(presetKeyBeforeFirstRender);
+    }, { reason: "center-text-migration", skipHistory: true });
   }
 
   audioEngine.setVolume(getState().audio.masterVolume);

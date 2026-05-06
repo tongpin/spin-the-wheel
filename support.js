@@ -37,6 +37,132 @@ const CREATOR_LINKS = {
   github: "https://github.com/scorta"
 };
 
+const SUPPORTING_PAGES_ARIA = {
+  en: "Supporting pages",
+  vi: "Các trang hỗ trợ",
+  es: "Páginas de apoyo",
+  pt: "Páginas de apoio",
+  fr: "Pages d'assistance",
+  de: "Hilfeseiten",
+  ja: "サポートページ",
+  ko: "지원 페이지",
+  zh: "支持页面",
+  id: "Halaman pendukung"
+};
+
+const HELP_COPY = {
+  en: {
+    title: "Spin the Wheel Help",
+    intro: "Use this page for quick setup, shortcut references, and practical usage tips.",
+    quickTitle: "Quick start",
+    quick: [
+      "Add entries one per line, or import CSV.",
+      "Choose mode and spin settings.",
+      "Spin with click or Ctrl/Cmd + K.",
+      "Share/export results when needed."
+    ]
+  },
+  vi: {
+    title: "Trợ giúp Spin the Wheel",
+    intro: "Dùng trang này để bắt đầu nhanh, xem phím tắt và các mẹo sử dụng thực tế.",
+    quickTitle: "Bắt đầu nhanh",
+    quick: [
+      "Thêm mục theo từng dòng hoặc nhập CSV.",
+      "Chọn chế độ và thiết lập quay.",
+      "Quay bằng cú nhấp hoặc Ctrl/Cmd + K.",
+      "Chia sẻ hoặc xuất kết quả khi cần."
+    ]
+  },
+  es: {
+    title: "Ayuda de Spin the Wheel",
+    intro: "Usa esta página para empezar rápido, consultar atajos y ver consejos prácticos.",
+    quickTitle: "Inicio rápido",
+    quick: [
+      "Agrega entradas una por línea o importa CSV.",
+      "Elige el modo y la configuración del giro.",
+      "Gira con clic o con Ctrl/Cmd + K.",
+      "Comparte o exporta resultados cuando lo necesites."
+    ]
+  },
+  pt: {
+    title: "Ajuda do Spin the Wheel",
+    intro: "Use esta página para começar rápido, consultar atalhos e ver dicas práticas.",
+    quickTitle: "Início rápido",
+    quick: [
+      "Adicione entradas uma por linha ou importe CSV.",
+      "Escolha o modo e as configurações de giro.",
+      "Gire com clique ou Ctrl/Cmd + K.",
+      "Compartilhe ou exporte resultados quando necessário."
+    ]
+  },
+  fr: {
+    title: "Aide Spin the Wheel",
+    intro: "Utilisez cette page pour démarrer rapidement, consulter les raccourcis et voir des conseils pratiques.",
+    quickTitle: "Démarrage rapide",
+    quick: [
+      "Ajoutez des entrées ligne par ligne ou importez un CSV.",
+      "Choisissez le mode et les réglages du lancer.",
+      "Lancez avec un clic ou avec Ctrl/Cmd + K.",
+      "Partagez ou exportez les résultats si nécessaire."
+    ]
+  },
+  de: {
+    title: "Spin the Wheel Hilfe",
+    intro: "Nutze diese Seite für einen schnellen Einstieg, Tastenkürzel und praktische Tipps.",
+    quickTitle: "Schnellstart",
+    quick: [
+      "Füge Einträge zeilenweise hinzu oder importiere CSV.",
+      "Wähle Modus und Dreheinstellungen.",
+      "Drehe per Klick oder mit Ctrl/Cmd + K.",
+      "Teile oder exportiere Ergebnisse bei Bedarf."
+    ]
+  },
+  ja: {
+    title: "Spin the Wheel ヘルプ",
+    intro: "このページでは、クイックセットアップ、ショートカット、実用的なヒントを確認できます。",
+    quickTitle: "クイックスタート",
+    quick: [
+      "項目を1行ずつ追加するか、CSVをインポートします。",
+      "モードとスピン設定を選びます。",
+      "クリックまたは Ctrl/Cmd + K で回します。",
+      "必要に応じて結果を共有またはエクスポートします。"
+    ]
+  },
+  ko: {
+    title: "Spin the Wheel 도움말",
+    intro: "이 페이지에서 빠른 설정, 단축키, 실용적인 사용 팁을 확인할 수 있습니다.",
+    quickTitle: "빠른 시작",
+    quick: [
+      "항목을 줄마다 추가하거나 CSV를 가져오세요.",
+      "모드와 회전 설정을 고르세요.",
+      "클릭 또는 Ctrl/Cmd + K로 돌리세요.",
+      "필요할 때 결과를 공유하거나 내보내세요."
+    ]
+  },
+  zh: {
+    title: "Spin the Wheel 帮助",
+    intro: "这个页面提供快速上手、快捷键参考和实用使用建议。",
+    quickTitle: "快速开始",
+    quick: [
+      "逐行添加条目，或导入 CSV。",
+      "选择模式和旋转设置。",
+      "通过点击或 Ctrl/Cmd + K 开始旋转。",
+      "需要时分享或导出结果。"
+    ]
+  },
+  id: {
+    title: "Bantuan Spin the Wheel",
+    intro: "Gunakan halaman ini untuk mulai cepat, melihat pintasan, dan membaca tips praktis.",
+    quickTitle: "Mulai cepat",
+    quick: [
+      "Tambahkan entri per baris atau impor CSV.",
+      "Pilih mode dan pengaturan putaran.",
+      "Putar dengan klik atau Ctrl/Cmd + K.",
+      "Bagikan atau ekspor hasil saat diperlukan."
+    ]
+  }
+};
+
 const COPY = {
   en: {
     nav: { about: "About", fairness: "Fairness", privacy: "Privacy", help: "Help", home: "Back to Spin the Wheel" },
@@ -335,15 +461,36 @@ function buildSupportCanonical(pathname, lang) {
   return url.toString();
 }
 
-function syncSupportSeo(pageKey, lang) {
+function getSupportPageContent(pageKey, text, lang) {
+  if (text?.[pageKey]) return text[pageKey];
+  if (pageKey === "help") return HELP_COPY[lang] || HELP_COPY.en;
+  return null;
+}
+
+function syncSupportSeo(pageKey, lang, text) {
   const pathname = SUPPORT_PAGE_PATHS[pageKey];
   if (!pathname) return;
 
   const canonicalUrl = buildSupportCanonical(pathname, lang);
+  const content = getSupportPageContent(pageKey, text, lang);
+  const title = content?.title;
+  const description = content?.intro;
 
   document.querySelector("link[rel='canonical']")?.setAttribute("href", canonicalUrl);
   document.querySelector("meta[property='og:url']")?.setAttribute("content", canonicalUrl);
   document.querySelector("meta[property='og:locale']")?.setAttribute("content", OG_LOCALE_BY_LANG[lang] || OG_LOCALE_BY_LANG.en);
+
+  if (title) {
+    document.title = title;
+    document.querySelector("meta[property='og:title']")?.setAttribute("content", title);
+    document.querySelector("meta[name='twitter:title']")?.setAttribute("content", title);
+  }
+
+  if (description) {
+    document.querySelector("meta[name='description']")?.setAttribute("content", description);
+    document.querySelector("meta[property='og:description']")?.setAttribute("content", description);
+    document.querySelector("meta[name='twitter:description']")?.setAttribute("content", description);
+  }
 
   SUPPORTED_LANGS.forEach((code) => {
     const element = document.querySelector(`link[rel='alternate'][hreflang='${code}']`);
@@ -616,8 +763,8 @@ function initFairnessAudit(main, lang, content) {
 }
 
 function renderSupportMain(main, pageKey, text, lang) {
-  if (!main || !text[pageKey]) return;
-  const content = text[pageKey];
+  const content = getSupportPageContent(pageKey, text, lang);
+  if (!main || !content) return;
 
   const listToHtml = (items = []) => items.map((item) => `<li>${item}</li>`).join("");
 
@@ -640,23 +787,13 @@ function renderSupportMain(main, pageKey, text, lang) {
   }
 
   if (pageKey === "fairness") {
-    const auditCopy = getFairnessAuditCopy(content);
-    const labels = auditCopy.labels;
-    main.innerHTML = `
-      <h1>${content.title}</h1>
-      <p>${content.intro}</p>
-      <h2>${content.flowTitle}</h2>
-      <div class="diagram">${content.flow.map((step) => `<div class="diagram-step">${step}</div>`).join("")}</div>
-      <h2>${content.independenceTitle}</h2>
-      <p>${content.independence}</p>
-      <h2>${content.weightedTitle}</h2>
-      <p>${content.weighted}</p>
-      <h2>${content.auditTitle}</h2>
-      <ul>${listToHtml(content.audit)}</ul>
+    const auditCopy = content.auditTool ? getFairnessAuditCopy(content) : null;
+    const labels = auditCopy?.labels || null;
+    const auditSection = auditCopy ? `
       <section class="fairness-audit" data-fairness-audit>
         <h2>${auditCopy.title}</h2>
         <p>${auditCopy.intro}</p>
-        <div class="fairness-controls" role="group" aria-label="Fairness audit controls">
+        <div class="fairness-controls" role="group" aria-label="${auditCopy.title}">
           <label class="fairness-field" for="fairness-audit-spins">
             <span>${labels.spins}</span>
             <input id="fairness-audit-spins" data-audit-spins type="number" min="${FAIRNESS_AUDIT_SPINS_MIN}" max="${FAIRNESS_AUDIT_SPINS_MAX}" step="1000" value="${FAIRNESS_AUDIT_DEFAULT_SPINS}">
@@ -679,7 +816,7 @@ function renderSupportMain(main, pageKey, text, lang) {
               <h3>${labels.chart}</h3>
               <div class="fairness-chart-legend" data-audit-chart-legend></div>
               <div class="fairness-chart-viewport">
-                <div class="fairness-chart" data-audit-chart role="img" aria-label="Bar chart of wins per entry"></div>
+                <div class="fairness-chart" data-audit-chart role="img" aria-label="${labels.chart}"></div>
               </div>
             </div>
             <div class="fairness-table-wrap">
@@ -691,7 +828,19 @@ function renderSupportMain(main, pageKey, text, lang) {
             </div>
           </div>
         </div>
-      </section>
+      </section>` : "";
+    main.innerHTML = `
+      <h1>${content.title}</h1>
+      <p>${content.intro}</p>
+      <h2>${content.flowTitle}</h2>
+      <div class="diagram">${content.flow.map((step) => `<div class="diagram-step">${step}</div>`).join("")}</div>
+      <h2>${content.independenceTitle}</h2>
+      <p>${content.independence}</p>
+      <h2>${content.weightedTitle}</h2>
+      <p>${content.weighted}</p>
+      <h2>${content.auditTitle}</h2>
+      <ul>${listToHtml(content.audit)}</ul>
+      ${auditSection}
       <p><a href="${withLang("/", lang)}">${text.nav.home}</a></p>
     `;
     return;
@@ -721,11 +870,13 @@ function renderSupportMain(main, pageKey, text, lang) {
       return;
     }
 
+    const help = content;
+
     main.innerHTML = `
-      <h1>${text.help.title}</h1>
-      <p>${text.help.intro}</p>
-      <h2>${text.help.quickTitle}</h2>
-      <ol>${listToHtml(text.help.quick)}</ol>
+      <h1>${help.title}</h1>
+      <p>${help.intro}</p>
+      <h2>${help.quickTitle}</h2>
+      <ol>${listToHtml(help.quick)}</ol>
       <p><a href="${withLang("/", lang)}">${text.nav.home}</a></p>
     `;
   }
@@ -741,12 +892,12 @@ function renderSharedFrame() {
   const year = new Date().getFullYear();
 
   document.documentElement.lang = lang;
-  syncSupportSeo(pageKey, lang);
+  syncSupportSeo(pageKey, lang, text);
 
   if (header) {
     header.innerHTML = `
       <a href="${withLang("/", lang)}">🎡 Spin the Wheel</a>
-      <nav aria-label="Supporting pages">
+      <nav aria-label="${SUPPORTING_PAGES_ARIA[lang] || SUPPORTING_PAGES_ARIA.en}">
         <a href="${withLang("/about.html", lang)}">${text.nav.about}</a>
         <a href="${withLang("/fairness.html", lang)}">${text.nav.fairness}</a>
         <a href="${withLang("/privacy.html", lang)}">${text.nav.privacy}</a>
@@ -764,7 +915,7 @@ function renderSharedFrame() {
 
   renderSupportMain(main, pageKey, text, lang);
 
-  if (pageKey === "fairness" && main) {
+  if (pageKey === "fairness" && main && text.fairness?.auditTool) {
     initFairnessAudit(main, lang, text.fairness);
   }
 }

@@ -82,7 +82,7 @@ export const DEFAULT_STATE = {
     pointerStyle: "classic",
     centerStyle: "spin-button",
     centerImage: null,
-    centerText: "SPIN",
+    centerText: "",
     centerColor: null,
     fontFamily: "auto",
     pageTheme: "dark",
