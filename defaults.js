@@ -112,15 +112,7 @@ export const DEFAULT_STATE = {
 
 export const SUPPORTED_LANGUAGES = [
   { code: "en", label: "English" },
-  { code: "kh", label: "ខ្មែរ" },
-  { code: "es", label: "Español" },
-  { code: "pt", label: "Português" },
-  { code: "fr", label: "Français" },
-  { code: "de", label: "Deutsch" },
-  { code: "ja", label: "日本語" },
-  { code: "ko", label: "한국어" },
-  { code: "zh", label: "简体中文" },
-  { code: "id", label: "Bahasa Indonesia" }
+  { code: "vi", label: "ខ្មែរ" }
 ];
 
-export const HREFLANG_CODES = ["en", "kh", "es", "pt", "fr", "de", "ja", "ko", "zh", "id"];
+export const HREFLANG_CODES = ["en", "vi", "es", "pt", "fr", "de", "ja", "ko", "zh", "id"];
