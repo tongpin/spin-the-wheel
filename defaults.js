@@ -112,7 +112,7 @@ export const DEFAULT_STATE = {
 
 export const SUPPORTED_LANGUAGES = [
   { code: "en", label: "English" },
-  { code: "KH", label: "ខ្មែរ" },
+  { code: "kh", label: "ខ្មែរ" },
   { code: "es", label: "Español" },
   { code: "pt", label: "Português" },
   { code: "fr", label: "Français" },
